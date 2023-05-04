@@ -1,0 +1,87 @@
+alipay:
+  # 支付宝沙箱环境或正式环境
+  easy:
+    protocol: http
+    ## 网关地址 沙箱环境是alipaydev 正式环境是alipay
+    gatewayHost: openapi.alipaydev.com
+    # 签名方式
+    signType: RSA2
+    # 应用ID
+    appId: 2021000121699940
+    # 应用私钥
+    merchantPrivateKey: MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCGVbGsbv6sX3SIK3gwGs4QBcQhPQznco9Artt9Nycvur2CgI4cZyHdEEB9TXPk7eGMnJAxISN9EAHZ5Ym9ry2vL6uDLfySzwprRjV0Flr+ztd3lRcWMCjiKnL5azwp/qMz3xizIxlpOeaDNVvjVtEFfijELGYakkQh7Nprvs3tHXn1xejVZKvfw7au2LP39VX68aHBnM9qTH7Niv9hwk5T8s2+MBEbMW29de3AIR4Ovkw5oTZzgfdtbdUKxhM9Wul1llC6ABA5M/ujAoXjkmPE/Go9ZyFRZi4rvBhaSxpO29QpwbuViXqyLB6KTP/VSPA5AWC27aUOzcfyvBsfrtz9AgMBAAECggEBAIPCGXqfg3teRNYqjL/iCqr8fNp9HuMEIi23U+EE75KI/se5f6msHjLNdfNwvHOWPtvD1EnbzwsjYC1wTiGWaKCjiP4pZMo5+GYvfs5V/vpdtki8GuDQa8kpCYxJ+cDW2QxPjdJmYs4q1EVtWKsqw+k3TJTdV2hIfjsoLTPw+dnO2BLm+k3ZtKga2frxpnVm0gPzpOWy8ALaKBJLrc0z7QZ6Z0ROzfF6JwCDcPtlqtB/B/LkN0ODWD54pKA8d/zPQCdAAOSJSmaV0LrrAhng7VD/XENOY5bdtYrp6JUzixANEI9C5wiaFqGWt2PIzTJFrU79ne2AwHRS0zvVbclfPgECgYEA1cI10F38V/hpmun4UVCFGj/eAEuOWsU/+Z/YYKXN8kxN7ap+a6BC8bCfGsVaj+Us1u/kA3y39v7rYs6rHJXQaIBt4z6h1hkLkbaJx1IPyX6OFZOXXc+1hvNGC0sbu/TdD6dBjc+7Pg/VT6qiOttP3gsoVZr6Ro8z+nU6Q0pxg3ECgYEAoOGGjGt5xwJGsnJX00DTg2f2MCjTtruAg1g/on2AN/xmRzcAz6FzX45f6hVJ/MorkO92HAaEj/0Evmj18Ml5wdTyO3FSwu+Bf6585e28DO8M8ZkbJnoBqDzUBqCERqowFd1STmp070MN+ImUNU4CgOBJllwHES80EtMEuFPdlE0CgYAB+tWCw4wVyIA55hbdsfA5qQPGXuzHnHIWPsvDQWXh66EBJYYcOxTDpk4i8lb/ZDEBIKGtApe1mvDVLnLZRe3zOdVKuIbJM9wuklE+Xl01EY4BVyecv9K/mDs62Yw9Nmxhu7vYs2bZkU35eewcvXFE7jeGa3QL+UGS/Uj33JWmkQKBgCrxJ63RfjbNd7tn4+NieVKo7ECclS5ATCRC6PFhWFkZSN+XYeMJ8DbAVP+xYQdVm11bXYZLgxS/74U3lPYJgTNouKN/Mx0POtyu4W2qEDjPkf/m4yVZCZozalC+hbAq+xzK7444wi+fEVqWtnWn9ekadOnqdIR0ugyQQMFGuW09AoGAOIG+XrZY0AkWxwxQFNzTGgiaYMdylsT4iSP9ox1fq8HIIzCschqJDUm5dL4gDhLzy2z7kh412YWNjA16jvfwcfvyz7xsNKDs491Tul8uNOAqWQsvUl79p30gWr11dsXlNu49kwzo10xZH1o+JVi2iVfQK0n1es44R2oAmmSKnIs=   # 支付宝公钥
+    alipayPublicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsPdpEfDCR26Myp4iEabnE40mMctpLdqpN9TrdbBMbRVdmDfxzOhADPuJUQyiS5f+6RJhsQ5e1M6+AbIz2TLYyoOlZ+oTg24lS6USvYmOUyPYSBdYZv4yBodwkea/o2KlJKQHJGbiOzkJK57JLLtFIgv9uakG3gqrG3zCgO89l1gvug3gMi+wun3JCBUUP4o37lnH7doltGtkSCZ6QCFezPMP8q73mn9aVANWsn+UnR477z0XptLNg0QJ69pp4I69ZWFJIT5Bp0YIkCmQ2bRDjuIJ50P6MNfJvHhN1HF5+i+oWcZ6x2Z8adh5IxbcLay6RILr51rbrMulLLzeUzqCnQIDAQAB
+    encryptKey: 4p+P9qj0GAQbk7rUjR2/wQ==
+    notifyUrl: http://localhost:8080/pay/aliPay/notify
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/nanqiao?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: root
+  # redis连接信息
+  redis:
+    host: 192.168.100.60
+    port: 6379
+    password: 123456
+  mvc:
+    pathmatch:
+      #springfox使用的路径匹配是基于AntPathMatcher的，而Spring Boot2.6.X使用的是PathPatternMatcher
+      #所以需要配置此参数
+      matching-strategy: ant_path_matcher
+# mybatis配置
+mybatis:
+  # mapper.xml的文件
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    # 下划线转驼峰命名
+    map-underscore-to-camel-case: true
+
+#mybatis日志配置
+logging:
+  level:
+    com.mi.nanqiao.dao: debug
+
+# minio配置
+minio:
+  # 访问的url
+  endpoint: http://192.168.100.60
+  # API的端口
+  port: 9001
+  # 秘钥
+  accessKey: FH823357KFXSMFJND1RG
+  secretKey: UVhlfQo2Br76+lfWutikB+iYOkjhnMIbynfHfjwH
+  secure: false
+  bucket-name: java2210 # 桶名
+  image-size: 10485760 #  图片文件的最大大小10M
+  file-size: 1073741824 # 设定了文件的最大大小1G
+# 三方认证配置
+justauth:
+  enabled: true
+  type:
+    GITEE:
+      client-id: a8dc33c538e4de0de22a9ea2ae02893c4062729fd2de6d4025e3bacb9c7459bf
+      client-secret: d3608e22dda5186543210146dd593f3f31f8290aebf09c05a60b6e79dba7fbec
+      redirect-uri: http://127.0.0.1:8080/oauth/callback/gitee
+    BAIDU:
+      client-id: lnDzFsDOZfE1xH7QKd6LYGORREtuWpnC
+      client-secret: ovVj1YPz4oijoNYo2yrUwkiLknEHFjwV
+      redirect-uri: http://127.0.0.1:8080/oauth/callback/baidu
+    GITHUB:
+      client-id: a369e1fa1dbe392142f1
+      client-secret: 2c303c2bcd12b56dad89b954a3cb43527eae9b0f
+      redirect-uri: http://127.0.0.1:8080/oauth/callback/github
+tencent:
+  sms:
+    # 腾讯云的密钥
+    secretId: A**********Q
+    # 腾讯云的密钥
+    secretKey: 3***********b
+    # 短信应用ID
+    sdkAppId: 1400223160
+    # 端木模板ID
+    templateId: 363377
+    # 签名名称
+    signName: xxx
+

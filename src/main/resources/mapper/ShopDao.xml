@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mi.nanqiao.dao.ShopDao">
+
+    <resultMap type="com.mi.nanqiao.entity.Shop" id="ShopMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="spname" column="spname" jdbcType="VARCHAR"/>
+        <result property="spjiage" column="spjiage" jdbcType="INTEGER"/>
+        <result property="spaddtime" column="spaddtime" jdbcType="TIMESTAMP"/>
+        <result property="sptupian" column="sptupian" jdbcType="VARCHAR"/>
+        <result property="lbid" column="lbid" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ShopMap">
+        select id,
+               spname,
+               spjiage,
+               spaddtime,
+               sptupian,
+               lbid
+        from shop
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ShopMap">
+        select
+        id, spname, spjiage, spaddtime, sptupian, lbid
+        from shop
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="spname != null and spname != ''">
+                and spname = #{spname}
+            </if>
+            <if test="spjiage != null">
+                and spjiage = #{spjiage}
+            </if>
+            <if test="spaddtime != null">
+                and spaddtime = #{spaddtime}
+            </if>
+            <if test="sptupian != null and sptupian != ''">
+                and sptupian = #{sptupian}
+            </if>
+            <if test="lbid != null">
+                and lbid = #{lbid}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from shop
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="spname != null and spname != ''">
+                and spname = #{spname}
+            </if>
+            <if test="spjiage != null">
+                and spjiage = #{spjiage}
+            </if>
+            <if test="spaddtime != null">
+                and spaddtime = #{spaddtime}
+            </if>
+            <if test="sptupian != null and sptupian != ''">
+                and sptupian = #{sptupian}
+            </if>
+            <if test="lbid != null">
+                and lbid = #{lbid}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryAll" resultType="com.mi.nanqiao.entity.Shop">
+        select
+            id, spname, spjiage, spaddtime, sptupian, lbid
+        from shop
+    </select>
+    <select id="querySpnameByLbid" resultType="com.mi.nanqiao.entity.Shop">
+        SELECT p.spname FROM shop p INNER JOIN shop_type pp ON p.lbid = pp.lbid
+        where p.lbid = #{lbid}
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into shop(spname, spjiage, spaddtime, sptupian, lbid)
+        values (#{spname}, #{spjiage}, #{spaddtime}, #{sptupian}, #{lbid})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into shop(spname, spjiage, spaddtime, sptupian, lbid)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.spname}, #{entity.spjiage}, #{entity.spaddtime}, #{entity.sptupian}, #{entity.lbid})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into shop(spname, spjiage, spaddtime, sptupian, lbid)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.spname}, #{entity.spjiage}, #{entity.spaddtime}, #{entity.sptupian}, #{entity.lbid})
+        </foreach>
+        on duplicate key update
+        spname = values(spname),
+        spjiage = values(spjiage),
+        spaddtime = values(spaddtime),
+        sptupian = values(sptupian),
+        lbid = values(lbid)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update shop
+        <set>
+            <if test="spname != null and spname != ''">
+                spname = #{spname},
+            </if>
+            <if test="spjiage != null">
+                spjiage = #{spjiage},
+            </if>
+            <if test="spaddtime != null">
+                spaddtime = #{spaddtime},
+            </if>
+            <if test="sptupian != null and sptupian != ''">
+                sptupian = #{sptupian},
+            </if>
+            <if test="lbid != null">
+                lbid = #{lbid},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from shop
+        where id = #{id}
+    </delete>
+
+</mapper>
+
